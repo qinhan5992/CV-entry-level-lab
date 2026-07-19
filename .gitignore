@@ -1,2 +1,6 @@
 lab05/data
 lab05/img
+.DS_Store
+**/.DS_Store
+**/.ipynb_checkpoints/
+__pycache__/
