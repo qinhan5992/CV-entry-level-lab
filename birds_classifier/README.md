@@ -1,1 +1,162 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyN1eT9bgZ7L+UAc6wUBznGB"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"markdown","source":["# COMP9517 Group Project\n","\n","## Project Overview\n","\n","This project investigates image classification on a subset of the iNaturalist 2021 dataset using both traditional computer vision methods and deep learning approaches.\n","\n","We compare four approaches:\n","\n","- Traditional HOG + Linear SVM\n","- CNN\n","- ResNet18\n","- Vision Transformer (ViT)\n","\n","The dataset contains 500 selected species with fixed training, validation, and testing splits.\n","\n","---\n","\n","## Repository Structure\n","\n","Code/\n","\n","│\n","\n","├── Data Preparation/\n","\n","│   └── Data Preparation.ipynb\n","\n","│\n","\n","├── Traditional Model/\n","\n","│   ├── Traditional HOG-SVM Baseline.ipynb\n","\n","│   └── SVM-para-tuning.ipynb\n","\n","│\n","\n","├── ResNet/\n","\n","│   ├── CNN.ipynb\n","\n","│   ├── ResNet18_Scratch.ipynb\n","\n","│   └── ResNet18_ImageNet.ipynb\n","\n","│\n","\n","└── Vision Transformer/\n","\n","    └── COMP9517_ViT_Project.ipynb\n","\n","---\n","\n","## Notebook Description\n","\n","### 1. Data Preparation\n","\n","This notebook downloads the iNaturalist dataset, randomly selects 500 species, creates fixed train/validation/test splits, extracts image labels, and prepares all datasets used throughout the project.\n","\n","Output:\n","\n","- selected_500_species_dataset\n","- train_labels.csv\n","- validation_labels.csv\n","- test_labels.csv\n","\n","---\n","\n","### 2. Traditional HOG-SVM Baseline\n","\n","This notebook performs:\n","\n","- HOG feature extraction\n","- feature saving\n","- baseline Linear SVM (SGDClassifier) training\n","- model saving\n","\n","Output:\n","\n","- HOG feature files (.npy)\n","- baseline model\n","- training information\n","\n","---\n","\n","### 3. SVM Hyperparameter Tuning\n","\n","This notebook performs:\n","\n","- alpha tuning\n","- penalty comparison\n","- averaging comparison\n","- best model selection\n","- model saving\n","\n","The best model is later reused for robustness evaluation without retraining.\n","\n","---\n","\n","### 4. CNN\n","\n","This notebook trains a simple CNN from scratch as the first deep learning baseline.\n","\n","---\n","\n","### 5. ResNet18 Scratch\n","\n","This notebook trains a ResNet18 model from scratch.\n","\n","---\n","\n","### 6. ResNet18 ImageNet\n","\n","This notebook fine-tunes an ImageNet pretrained ResNet18.\n","\n","---\n","\n","### 7. Vision Transformer\n","\n","This notebook fine-tunes a pretrained Vision Transformer (ViT) model for the same classification task.\n","\n","---\n","\n","## Running Order\n","\n","The notebooks should be executed in the following order:\n","\n","1. Data Preparation\n","2. Traditional HOG-SVM Baseline\n","3. SVM Hyperparameter Tuning\n","4. CNN\n","5. ResNet18 Scratch\n","6. ResNet18 ImageNet\n","7. Vision Transformer\n","\n","---\n","\n","## Environment\n","\n","The project was developed using:\n","\n","- Python 3.10\n","- Google Colab\n","- PyTorch\n","- torchvision\n","- scikit-learn\n","- OpenCV\n","- scikit-image\n","- NumPy\n","- pandas\n","- matplotlib\n","\n","Google Drive was used for storing datasets, trained models, and experiment outputs.\n","\n","---\n","\n","## Notes\n","\n","- Most experiments require Google Drive to be mounted.\n","- Several training notebooks require multiple hours to finish.\n","- Saved models are reused whenever possible to avoid unnecessary retraining.\n","- Random seed = 46 unless otherwise stated."],"metadata":{"id":"6ia7X1JduIWr"}}]}
+# COMP9517 Group Project
+
+## Project Overview
+
+This project investigates image classification on a subset of the iNaturalist 2021 dataset using both traditional computer vision methods and deep learning approaches.
+
+We compare four approaches:
+
+- Traditional HOG + Linear SVM
+- CNN
+- ResNet18
+- Vision Transformer (ViT)
+
+The dataset contains 500 selected species with fixed training, validation, and testing splits.
+
+---
+
+## Repository Structure
+
+Code/
+
+│
+
+├── Data Preparation/
+
+│   └── Data Preparation.ipynb
+
+│
+
+├── Traditional Model/
+
+│   ├── Traditional HOG-SVM Baseline.ipynb
+
+│   └── SVM-para-tuning.ipynb
+
+│
+
+├── ResNet/
+
+│   ├── CNN.ipynb
+
+│   ├── ResNet18_Scratch.ipynb
+
+│   └── ResNet18_ImageNet.ipynb
+
+│
+
+└── Vision Transformer/
+
+    └── COMP9517_ViT_Project.ipynb
+
+---
+
+## Notebook Description
+
+### 1. Data Preparation
+
+This notebook downloads the iNaturalist dataset, randomly selects 500 species, creates fixed train/validation/test splits, extracts image labels, and prepares all datasets used throughout the project.
+
+Output:
+
+- selected_500_species_dataset
+- train_labels.csv
+- validation_labels.csv
+- test_labels.csv
+
+---
+
+### 2. Traditional HOG-SVM Baseline
+
+This notebook performs:
+
+- HOG feature extraction
+- feature saving
+- baseline Linear SVM (SGDClassifier) training
+- model saving
+
+Output:
+
+- HOG feature files (.npy)
+- baseline model
+- training information
+
+---
+
+### 3. SVM Hyperparameter Tuning
+
+This notebook performs:
+
+- alpha tuning
+- penalty comparison
+- averaging comparison
+- best model selection
+- model saving
+
+The best model is later reused for robustness evaluation without retraining.
+
+---
+
+### 4. CNN
+
+This notebook trains a simple CNN from scratch as the first deep learning baseline.
+
+---
+
+### 5. ResNet18 Scratch
+
+This notebook trains a ResNet18 model from scratch.
+
+---
+
+### 6. ResNet18 ImageNet
+
+This notebook fine-tunes an ImageNet pretrained ResNet18.
+
+---
+
+### 7. Vision Transformer
+
+This notebook fine-tunes a pretrained Vision Transformer (ViT) model for the same classification task.
+
+---
+
+## Running Order
+
+The notebooks should be executed in the following order:
+
+1. Data Preparation
+2. Traditional HOG-SVM Baseline
+3. SVM Hyperparameter Tuning
+4. CNN
+5. ResNet18 Scratch
+6. ResNet18 ImageNet
+7. Vision Transformer
+
+---
+
+## Environment
+
+The project was developed using:
+
+- Python 3.10
+- Google Colab
+- PyTorch
+- torchvision
+- scikit-learn
+- OpenCV
+- scikit-image
+- NumPy
+- pandas
+- matplotlib
+
+Google Drive was used for storing datasets, trained models, and experiment outputs.
+
+---
+
+## Notes
+
+- Most experiments require Google Drive to be mounted.
+- Several training notebooks require multiple hours to finish.
+- Saved models are reused whenever possible to avoid unnecessary retraining.
+- Random seed = 46 unless otherwise stated.
