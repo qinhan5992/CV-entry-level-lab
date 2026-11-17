@@ -1,5 +1,3 @@
-# COMP9517 Group Project
-
 ## Project Overview
 
 This project investigates image classification on a subset of the iNaturalist 2021 dataset using both traditional computer vision methods and deep learning approaches.
